@@ -6,79 +6,100 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import useGetWeather, { WeatherData } from "../hooks/useGetWeather";
 import { useEffect, useState } from "react";
 import { MD3Colors, ProgressBar } from "react-native-paper";
+import EvilIcons from '@expo/vector-icons/EvilIcons';
 const Home = () => {
     const { loading, error, getCityCoordinates, Today } = useGetWeather();
     const [backgroundImage, setBeackgroundImage] = useState<string>("");
     const [weather, setWeather] = useState<any>(null);
     const [resolved, setResolved] = useState(false);
-    // useEffect(() => {
-    //     getCityCoordinates().then((resp) => {
-    //         console.log(resp);
-    //         setWeather(resp?.weather);
-    //     }).catch((err) => console.log(err));
-
-    // }, []);
+    const [city, SetCity] = useState(null);
+    useEffect(() => {
+        if (city) {
+            getCityCoordinates(city).then((resp) => {
+                console.log(resp);
+                setWeather(resp?.weather);
+            }).catch((err) => console.log(err));
+        }
+    }, []);
 
     type NavigationProp = NativeStackNavigationProp<RootStackParamList>
     const navigation = useNavigation<NavigationProp>();
 
     return (
-        <ImageBackground
-            source={require('../assets/clouds.jpg')}
-            style={styles.background}
-        >
-            <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+            {
+                city ? (
+                    <ImageBackground
+                        source={require('../assets/sun_clear.jpg')}
+                        style={styles.background}
+                    >
+                        <View style={styles.container}>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
-                    <Text style={styles.city}>{weather?.name}</Text>
-                    <Text style={styles.temperature}>{(((weather?.main?.temp ?? 273.15) - 273.15)).toFixed(0)}&deg;c</Text>
-                    <Text style={styles.weatherType}>{weather?.weather[0]?.description}</Text>
-                    <Text style={styles.highLow}>H:{((weather?.forecast[0]?.maxTemp ?? 273.15) - 273.15).toFixed(0)}&deg;  L:{((weather?.forecast[0]?.minTemp ?? 273.15) - 273.15).toFixed(0)}&deg;</Text>
-                </View>
-                <View style={styles.forecastContainer}>
-                    <Text style={styles.forecastText}>{Today[Today.length - 1]?.weather} conditions expected around {Today[Today.length - 1]?.time}:00.</Text>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <View style={styles.hourlyForecast}>
-                            {Today.map((item: any, index: number) => (
-                                <View key={index} style={styles.hourContainer}>
-                                    {index === 0 ? <Text style={styles.hour}>Now</Text> : <Text style={styles.hour}>{item.time}</Text>}
-                                    <Image source={{ uri: `http://openweathermap.org/img/wn/${item.icon}.png` }} style={{ width: 20, height: 20, alignSelf: "center" }} />
-                                    <Text style={styles.hourTemp}>{(item.temp - 270.15).toFixed(0)}°</Text>
-                                </View>
-                            ))}
-                        </View>
-                    </ScrollView>
-                </View>
-
-                <View style={styles.dailyForecast}>
-                <Text style={{flexDirection:"row",color:'white'}}>{weather?.forecast.length ?? 0}-DAY FORECAST</Text>
-                    {weather?.forecast.map((item: any, index: number) => (
-                        <View key={index} style={styles.dayContainer}>
-                            {index === 0 ? <Text style={styles.day}>Today</Text> : <Text style={styles.day}>{item.day}</Text>}
-                            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                                <Image source={{ uri: `http://openweathermap.org/img/wn/${item.icon}.png` }} style={{ width: 20, height: 20 }} />
-                                <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                                    <Text style={styles.dayTemp}>{((item.minTemp ?? 0) - 270.15).toFixed(0)}°</Text>
-                                    <View style={{ width: 70, height: 5, backgroundColor:'#fbf004' }} />
-                                    <Text style={styles.dayTemp}>{((item.maxTemp ?? 0) - 270.15).toFixed(0)}°</Text>
-                                </View>
-
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
+                                <Text style={styles.city}>{weather?.name}</Text>
+                                <Text style={styles.temperature}>{(((weather?.main?.temp ?? 273.15) - 273.15)).toFixed(0)}&deg;c</Text>
+                                <Text style={styles.weatherType}>{weather?.weather[0]?.description}</Text>
+                                <Text style={styles.highLow}>H:{((weather?.forecast[0]?.maxTemp ?? 273.15) - 273.15).toFixed(0)}&deg;  L:{((weather?.forecast[0]?.minTemp ?? 273.15) - 273.15).toFixed(0)}&deg;</Text>
+                            </View>
+                            <View style={styles.forecastContainer}>
+                                <Text style={styles.forecastText}>{Today[Today.length - 1]?.weather} conditions expected around {Today[Today.length - 1]?.time}:00.</Text>
+                                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                    <View style={styles.hourlyForecast}>
+                                        {Today.map((item: any, index: number) => (
+                                            <View key={index} style={styles.hourContainer}>
+                                                {index === 0 ? <Text style={styles.hour}>Now</Text> : <Text style={styles.hour}>{item.time}</Text>}
+                                                <Image source={{ uri: `http://openweathermap.org/img/wn/${item.icon}.png` }} style={{ width: 20, height: 20, alignSelf: "center" }} />
+                                                <Text style={styles.hourTemp}>{(item.temp - 270.15).toFixed(0)}°</Text>
+                                            </View>
+                                        ))}
+                                    </View>
+                                </ScrollView>
                             </View>
 
-                        </View>
-                    ))}
-                </View>
-            </View>
-            <View style={styles.bottomView}>
-                <TouchableOpacity onPress={() => navigation.navigate('Map')}>
-                    <Ionicons name="map-outline" size={24} color="white" />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Cities')}>
-                    <Ionicons name="list" size={24} color="white" />
-                </TouchableOpacity>
+                            <View style={styles.dailyForecast}>
+                                <Text style={{ flexDirection: "row", color: 'white' }}><EvilIcons name="calendar" size={18} color="white" />{weather?.forecast.length ?? 0}-DAY FORECAST</Text>
+                                {weather?.forecast.map((item: any, index: number) => (
+                                    <View key={index} style={styles.dayContainer}>
+                                        {index === 0 ? <Text style={styles.day}>Today</Text> : <Text style={styles.day}>{item.day}</Text>}
+                                        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                                            <Image source={{ uri: `http://openweathermap.org/img/wn/${item.icon}.png` }} style={{ width: 20, height: 20 }} />
+                                            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                                                <Text style={styles.dayTemp}>{((item.minTemp ?? 0) - 270.15).toFixed(0)}°</Text>
+                                                <View style={{ width: 70, height: 5, backgroundColor: '#fbf004' }} />
+                                                <Text style={styles.dayTemp}>{((item.maxTemp ?? 0) - 270.15).toFixed(0)}°</Text>
+                                            </View>
 
-            </View>
-        </ImageBackground>
+                                        </View>
+
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+
+                        <View style={styles.bottomView}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Map')}>
+                                <Ionicons name="map-outline" size={24} color="white" />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('Cities')}>
+                                <Ionicons name="list" size={24} color="white" />
+                            </TouchableOpacity>
+
+                        </View>
+                    </ImageBackground>
+                ) : <View style={{ flex: 1,gap:15, justifyContent: 'center', alignItems: 'center',backgroundColor:'black' }}>
+                    <Image source={require('../assets/weather.png')} style={{ width: 90, height: 90,alignSelf:'center',zIndex:5 }} />
+                    <Text style={{color:'white'}}>Let's add a city first</Text>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Cities')}
+                     style={{backgroundColor:'#D8D2C2',padding:15,borderRadius:15}}>
+                        <Text>Search</Text>
+                    </TouchableOpacity>
+                </View>
+
+            }
+        </View>
+
+
+
 
     );
 
@@ -90,6 +111,7 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         resizeMode: 'cover',
+        flexDirection: 'column'
     },
     bottomView: {
         height: 70,

@@ -26,7 +26,7 @@ const useGetWeather = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const getCityCoordinates = async (loc: string = "Lebowakgomo") => {
+    const getCityCoordinates = async (loc: string | null) => {
         const apiKey = process.env.EXPO_PUBLIC_API_KEY;
         if (!apiKey) {
             setError("API Key is missing.");

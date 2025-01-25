@@ -6,11 +6,13 @@ import Home from './screens/Home';
 import Map from './screens/Map';
 import Cities from './screens/Cities';
 import { PaperProvider } from 'react-native-paper';
+import { MenuProvider } from 'react-native-popup-menu';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   const options = { title: '', headerShown: false };
   return (
+    <MenuProvider>
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
@@ -20,6 +22,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+    </MenuProvider>
   );
 }
 
