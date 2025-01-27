@@ -6,7 +6,10 @@ export type WeatherData = {
     country: string;
     state: string;
     main: { temp: number; temp_min: number; temp_max: number };
-    weather: { description: string; icon: string }[];
+    weather: [
+        { description: string; icon: string }
+    ];
+    coord:{lon: number, lat: number};
 };
 
 type ForecastItem = {
@@ -20,7 +23,7 @@ type ForecastItem = {
 };
 
 const useGetWeather = () => {
-    let tempWeather:WeatherData | null;
+    let tempWeather:WeatherData;
     //const [weather, setWeather] = useState<WeatherData | null>(null);
     const [Today, setToday] = useState<ForecastItem[]>([]);
     const [loading, setLoading] = useState(false);
@@ -40,9 +43,9 @@ const useGetWeather = () => {
             );
             if (resp.status === 200) {
                 const { lat, lon, name, country, state } = resp.data[0];
-                let weather=await getWeatherDetails(lat, lon, name, country, state);
+                let weatherDetails=await getWeatherDetails(lat, lon, name, country, state);
 
-                return {weather};
+                return {weatherDetails};
             }
         } catch (error: any) {
             setError(error.message);
