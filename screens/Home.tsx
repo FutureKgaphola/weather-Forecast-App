@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ImageBackground, ScrollView, Text, View } from "react-native";
 import { RootStackParamList } from "../types/appTypes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useGetWeather from "../hooks/useGetWeather";
 import { useEffect, useState } from "react";
 import { Divider } from "react-native-paper";
@@ -16,6 +16,7 @@ import FiveDaysForeCast from "../components/FiveDaysForecast";
 import BottomNav from "../components/BottomNavIcons";
 import WelcomeView from "../components/WelcomeView";
 import LoadingView from "../components/LoadingView";
+import MapViewTemplate from "../components/MapViewTemplate";
 
 const Home = () => {
     const { loading, error, getCityCoordinates, Today } = useGetWeather();
@@ -56,7 +57,7 @@ const Home = () => {
                     >
                         {
                             !loading ? (
-                                <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+                                <ScrollView style={{ flex: 1,marginBottom:90,paddingBottom:10 }} showsVerticalScrollIndicator={false}>
                                     <View style={TailwindSstyles.container}>
 
                                         <View style={TailwindSstyles.containTop}>
@@ -79,9 +80,18 @@ const Home = () => {
                                             <Text style={{ flexDirection: "row", color: white }}><EvilIcons name="calendar" size={18} color={white} />{weather?.forecast.length ?? 0}-DAY FORECAST</Text>
                                             <FiveDaysForeCast forecast={weather?.forecast} />
                                         </View>
+
+                                        <View style={TailwindSstyles.HomeMap}>
+                                        <Text style={{ flexDirection: "row", color: white }}><FontAwesome name="umbrella" size={18} color={white} />Precipitation</Text>
+                                            
+                                        <MapViewTemplate/>
+                                        <Text style={{color:white}} onPress={()=>navigation.navigate('Map')}>See More</Text>
                                     </View>
+                                    </View>
+
+                                    
                                 </ScrollView>
-                            ) : <LoadingView />
+                            ) : <LoadingView sizeIcon='large' />
                         }
 
                         <BottomNav />

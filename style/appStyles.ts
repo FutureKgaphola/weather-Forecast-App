@@ -20,6 +20,18 @@ const TailwindSstyles = {
     dayTemp: s`text-lg text-white`,
     watherIcon:s`w-5 h-5 alignSelf-center`,
     contWelcome:s`flex-1 gap-4 justify-center items-center bg-black`,
+
+    containerCity:s`flex-1 pt-11 bg-black p-1 gap-5`,
+    MenuTrigger:s`z-10 w-64 justify-center, items-center self-center, p-3.5`,
+    weatherlabel: s`text-white text-4xl font-bold pb-1.5`,
+
+    map:s`w-full h-full`,
+    titleText:s`text-white text-base font-bold`,
+
+
+    HomeMap: s`mt-5 border-borderColorShado bg-secondshado p-2.5 rounded-2.5 h-52 mb-4`,
+
+
   };
 
    const white='white'

@@ -30,12 +30,12 @@ const FiveDaysForeCast = ({ forecast }: { forecast: any[] }) => {
                                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                                     <Text style={TailwindSstyles.dayTemp}>
                                         {((item.minTemp ?? 0) - 273.15).toFixed(0)}
-                                        <Text>&#8451;</Text>
+                                        <Text>&deg;</Text>
                                     </Text>
                                     <View style={{ width: 70, height: 5, backgroundColor: '#fbf004' }} />
                                     <Text style={TailwindSstyles.dayTemp}>
                                         {((item.maxTemp ?? 0) - 273.15).toFixed(0)}
-                                        <Text>&#8451;</Text>
+                                        <Text>&deg;</Text>
                                     </Text>
                                 </View>
                             </View>
