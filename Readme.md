@@ -15,7 +15,7 @@ Specificaly this version can also run on Android since it is crossplatform versi
 for mac devices or ios
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/Weather-Forecast-App.git
+    git clone https://github.com/FutureKgaphola/weather-Forecast-App.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -34,7 +34,7 @@ for mac devices or ios
 for android devices using windows
 1. Clone the repository:
     ```bash or cmd
-    git clone https://github.com/yourusername/Weather-Forecast-App.git
+    git clone https://github.com/FutureKgaphola/weather-Forecast-App.git
     ```
 2. Navigate to the project directory:
     ```bash or cmd
@@ -92,7 +92,7 @@ Specifically, this version can also run on Android since it is a cross-platform 
 for mac devices or ios
 1. Clone the repository:
         ```bash
-        git clone https://github.com/yourusername/Weather-Forecast-App.git
+        git clone https://github.com/FutureKgaphola/weather-Forecast-App.git
         ```
 2. Navigate to the project directory:
         ```bash
@@ -111,7 +111,7 @@ for mac devices or ios
 for android devices using windows
 1. Clone the repository:
         ```bash or cmd
-        git clone https://github.com/yourusername/Weather-Forecast-App.git
+        git clone https://github.com/FutureKgaphola/weather-Forecast-App.git
         ```
 2. Navigate to the project directory:
         ```bash or cmd
