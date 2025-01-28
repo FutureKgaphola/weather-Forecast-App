@@ -9,7 +9,7 @@ Specificaly this version can also run on Android since it is crossplatform versi
 - **Current Weather**: Displays the current temperature, weather conditions, humidity, and wind speed.
 - **Hourly Forecast**: Provides weather predictions for the next 24 hours.
 - **Weekly Forecast**: Shows weather forecasts for the upcoming week.
-- **Location Search**: Allows users to search for weather information by city or GPS location.
+- **Location Search**: Allows users to search for weather information by city name.
 
 ## Installation
 for mac devices or ios
@@ -83,7 +83,7 @@ Specifically, this version can also run on Android since it is a cross-platform 
 - **Current Weather**: Displays the current temperature, weather conditions, humidity, and wind speed.
 - **Hourly Forecast**: Provides weather predictions for the next 24 hours.
 - **Weekly Forecast**: Shows weather forecasts for the upcoming week.
-- **Location Search**: Allows users to search for weather information by city or GPS location.
+- **Location Search**: Allows users to search for weather information by city name.
 
 ## Known Issues
     - The app does not currently support switching between Celsius and Fahrenheit. even if the buttons may appear please not they are not functional. The weather conditions are in Celsius on this app.
