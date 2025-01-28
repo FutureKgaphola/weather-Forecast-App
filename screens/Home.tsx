@@ -19,7 +19,7 @@ import LoadingView from "../components/LoadingView";
 import MapViewTemplate from "../components/MapViewTemplate";
 
 const Home = () => {
-    const { loading, error, getCityCoordinates, Today } = useGetWeather();
+    const { loading, getCityCoordinates, Today } = useGetWeather();
     const [weather, setWeather] = useState<any>(null);
     const { cities, getPlaces, getLastItemClicked } = useSavedPlaces();
     useEffect(() => {
@@ -52,12 +52,12 @@ const Home = () => {
             {
                 cities && cities.length > 0 ? (
                     <ImageBackground
-                        source={require('../assets/night-stars.jpg')}
+                        source={require('../assets/sun_clear.jpg')}
                         style={TailwindSstyles.background}
                     >
                         {
                             !loading ? (
-                                <ScrollView style={{ flex: 1,marginBottom:90,paddingBottom:10 }} showsVerticalScrollIndicator={false}>
+                                <ScrollView style={{ flex: 1,marginBottom:90,paddingBottom:6 }} showsVerticalScrollIndicator={false}>
                                     <View style={TailwindSstyles.container}>
 
                                         <View style={TailwindSstyles.containTop}>
@@ -89,7 +89,6 @@ const Home = () => {
                                     </View>
                                     </View>
 
-                                    
                                 </ScrollView>
                             ) : <LoadingView sizeIcon='large' />
                         }

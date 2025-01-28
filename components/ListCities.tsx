@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { Text } from "react-native";
 import { ImageBackground } from "react-native";
 import { Place, useSavedPlaces } from "../hooks/useSavedPlaces";
@@ -38,7 +38,7 @@ const ListCities = ({ high, low, name, temp, desc,ShowDeleteIcons,setShowDeleteI
             </TouchableOpacity> : null}
             <TouchableOpacity style={{ flex: 1 }} onPress={() => handleClickAction()}>{/*name is the index of the city in the list*/}
                 <ImageBackground
-                    source={require('../assets/clouds.jpg')}
+                    source={require('../assets/sun_clear.jpg')}
                     style={{ backgroundColor: 'transparent', position: 'relative', borderRadius: 15, overflow: 'hidden', margin: 5, padding: 10 }}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>{name}</Text>
                     <Text style={{ color: 'white' }}>{getCurrentTime() ?? '00h00'}</Text>

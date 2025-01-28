@@ -1,4 +1,9 @@
 import { s } from "react-native-wind";
+
+/*for styling i used react-native-wind instead of nativewind
+their implementations are much the same.
+Reason for this choice is that nativewind is unstable with none expo-router apps even if your SDK is latest.
+*/
 const TailwindSstyles = {
     containTop:s`justify-center items-center mt-12`,
     background: s`flex-1 resize-cover flex-col`,
@@ -28,14 +33,12 @@ const TailwindSstyles = {
     map:s`w-full h-full`,
     titleText:s`text-white text-base font-bold`,
 
-
     HomeMap: s`mt-5 border-borderColorShado bg-secondshado p-2.5 rounded-2.5 h-52 mb-4`,
-
 
   };
 
-   const white='white'
-   const black='black'
+   const white='white';
+   const black='black';
 
   export {TailwindSstyles,white,black}
 

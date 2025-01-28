@@ -1,11 +1,17 @@
-import { Platform, StyleSheet, View, Text } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { TailwindSstyles } from "../style/appStyles";
 import MapView, { Marker } from "react-native-maps";
 import CMarker from "./customMarker";
 import { useEffect, useRef, useState, memo } from "react";
 import { useSavedPlaces } from "../hooks/useSavedPlaces";
+import { Snackbar } from "react-native-paper";
 
 const MapViewTemplate = () => {
+     const [visible, setVisible] = useState(false);
+
+     const onToggleSnackBar = () => setVisible(!visible);
+
+     const onDismissSnackBar = () => setVisible(false);
      const [initialRegion, setInitialRegion] = useState({
           latitude: -23.9116681,
           longitude: 29.4559915,
@@ -18,6 +24,7 @@ const MapViewTemplate = () => {
 
      const handleMarkerPress = (title: string) => {
           setSelectedMarker(title);
+          onToggleSnackBar();
      };
 
      const AnimateToArea = (p: any) => {
@@ -75,9 +82,12 @@ const MapViewTemplate = () => {
                </MapView>
 
                {selectedMarker && (
-                    <View style={styles.titleContainer}>
-                         <Text style={TailwindSstyles.titleText}>{selectedMarker}</Text>
-                    </View>
+                    <Snackbar
+                         visible={visible}
+                         onDismiss={onDismissSnackBar}
+                    >
+                         {selectedMarker}
+                    </Snackbar>
                )}
           </View>
      );

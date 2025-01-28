@@ -1,11 +1,8 @@
 import { View } from "react-native";
-import { FlatList } from "react-native";
 import { Divider } from "react-native-paper";
 import { TailwindSstyles } from "../style/appStyles";
 import { Text } from "react-native";
 import { Image } from "react-native";
-import { Fragment } from "react";
-
 
 const FiveDaysForeCast = ({ forecast }: { forecast: any[] }) => {
     //since the list is static or defined to a max of 5 days,

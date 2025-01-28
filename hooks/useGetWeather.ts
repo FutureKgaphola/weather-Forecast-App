@@ -24,7 +24,6 @@ type ForecastItem = {
 
 const useGetWeather = () => {
     let tempWeather:WeatherData;
-    //const [weather, setWeather] = useState<WeatherData | null>(null);
     const [Today, setToday] = useState<ForecastItem[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

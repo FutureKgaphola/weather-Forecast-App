@@ -27,7 +27,7 @@ const Cities = () => {
     type NavigationProp = NativeStackNavigationProp<RootStackParamList>
     const navigation = useNavigation<NavigationProp>();
     const { loading,getCityCoordinates } = useGetWeather();
-    const { error, cities, setPlaces, getPlaces, setLastItemClicked, setCities } = useSavedPlaces();
+    const { cities, setPlaces, getPlaces, setLastItemClicked, setCities } = useSavedPlaces();
     useEffect(() => {
         getPlaces();
     }, []);

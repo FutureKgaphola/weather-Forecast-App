@@ -9,7 +9,6 @@ export interface Place {
   low: string;
   desc: string;
 coord:{lon: number, lat: number};
-
 }
 
 export const useSavedPlaces = () => {
@@ -25,7 +24,6 @@ export const useSavedPlaces = () => {
     }
   }
 
-
   const getLastItemClicked = async (): Promise<string> => {
     try {
       const Value = await AsyncStorage.getItem('lastIndexClicked');
@@ -36,7 +34,6 @@ export const useSavedPlaces = () => {
       return '';
     }
   };
-
 
   // Save a new place to AsyncStorage and update state, avoiding duplicates
   const setPlaces = async (value: Place) => {

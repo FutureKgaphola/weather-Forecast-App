@@ -1,3 +1,4 @@
+//This constants have not been used yet. thier purpose is to dynamically change images based on weather conditions per place.
 const Thunderstorm = [
     {
         condition: 'thunderstorm with light rain',
